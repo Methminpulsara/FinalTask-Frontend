@@ -16,22 +16,34 @@ export class AddEmployeeComponent {
 
   constructor(private employeeService:EmployeeService){}
 
-  public employee : Employee= {
+  public employee: Employee = {
     employeeId: 0,
     name: '',
     email: '',
     department: '',
     createdDate: '',
     modifiedDate: ''
-  }
+  };
+  
+  add() {
+   
+    if (!this.employee.name || !this.employee.email || !this.employee.department) {
+      alert("Please fill in all required fields.");
+      return;
+    }
 
-  add(){
-    this.employeeService.save(this.employee).subscribe(res=>{
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.employee.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+  
+    this.employeeService.save(this.employee).subscribe(res => {
       this.resetform();
-      alert("added succccsfully ! ")
-    })
-
+      alert("Added successfully!");
+    });
   }
+  
 
 
   resetform(){
