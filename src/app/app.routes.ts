@@ -5,7 +5,7 @@ import { ManageComponent } from './page/dhashboard/manage/manage.component';
 
 export const routes: Routes = [
     {
-        path: "dashboard",
+        path: "",
         component:DhashboardComponent,
         children:[
           {
@@ -21,6 +21,9 @@ export const routes: Routes = [
             component:ManageComponent
           }
         ]
+    },{
+      path:"",
+      component:DhashboardComponent
     }
 
 
