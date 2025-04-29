@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DhashboardComponent } from './page/dhashboard/dhashboard.component';
 import { AddEmployeeComponent } from './page/dhashboard/add-employee/add-employee.component';
 import { ManageComponent } from './page/dhashboard/manage/manage.component';
+import { LoginComponent } from './page/login/login.component';
 
 export const routes: Routes = [
     {
@@ -22,9 +23,10 @@ export const routes: Routes = [
           }
         ]
     },{
-      path:"",
-      component:DhashboardComponent
+      path:"login",
+      component:LoginComponent
     }
+    
 
 
 ];
