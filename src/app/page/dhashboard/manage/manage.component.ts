@@ -101,7 +101,7 @@ export class ManageComponent implements OnInit {
         (employee.name.toLowerCase().includes(this.search.toLowerCase()) ||
          employee.email.toLowerCase().includes(this.search.toLowerCase()) ||
          employee.department.toLowerCase().includes(this.search.toLowerCase())) &&
-        (this.selectedDepartment === '' || employee.department === this.selectedDepartment)
+        (this.selectedDepartment === '' || employee.department.toLowerCase() === this.selectedDepartment.toLowerCase())
       );
     }
     
