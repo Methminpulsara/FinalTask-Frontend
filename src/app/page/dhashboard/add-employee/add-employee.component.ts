@@ -26,14 +26,20 @@ export class AddEmployeeComponent {
   };
   
   add() {
-   
+
     if (!this.employee.name || !this.employee.email || !this.employee.department) {
       alert("Please fill in all required fields.");
       return;
     }
-
+  
+    const nameRegex = /^[A-Z][a-zA-Z\s'-]{1,49}$/;
+  if (!nameRegex.test(this.employee.name.trim())) {
+    alert("Name must start with a capital letter");
+    return;
+  }
+  
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.employee.email)) {
+    if (!emailRegex.test(this.employee.email.trim())) {
       alert("Please enter a valid email address.");
       return;
     }
@@ -43,8 +49,6 @@ export class AddEmployeeComponent {
       alert("Added successfully!");
     });
   }
-  
-
 
   resetform(){
       this.employee ={

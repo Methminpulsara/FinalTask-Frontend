@@ -31,9 +31,7 @@ export class ManageComponent implements OnInit {
     department:"",
     modifiedDate:""
   };
-
- 
-    
+  
     employeeList : Employee[]= []
     filteredEmployees: Employee[] = [];
     isUpdateModalOpen:boolean=false;
@@ -76,23 +74,27 @@ export class ManageComponent implements OnInit {
     }
 
     updateProfile(){
+
+      const nameRegex = /^[A-Za-z ]{1,100}$/;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       const updatedEmployee : Employee ={
         ...this.employee,
         name:this.updatedemployee.name ? this.updatedemployee.name.trim() : '',
         email:this.updatedemployee.email ? this.updatedemployee.email.trim() : '',
         department:this.updatedemployee.department ? this.updatedemployee.department.trim() : '',
         modifiedDate:this.updatedemployee.modifiedDate ? this.updatedemployee.modifiedDate.trim() : ''
-    };
-    this.employeeService.update(this.employee.employeeId, updatedEmployee).subscribe(
-      res => {
-        alert("Updated")
-        this.employee = res;
-        this.closeUpdateModal();
-      },
-      error => {
-        alert(error)
-      }
-    );
+
+      };
+        this.employeeService.update(this.employee.employeeId, updatedEmployee).subscribe(
+          res => {
+            alert("Updated")
+            this.employee = res;
+            this.closeUpdateModal();
+        },
+          error => {
+            alert(error)
+        }
+      );
     }
 
 
@@ -104,8 +106,6 @@ export class ManageComponent implements OnInit {
         (this.selectedDepartment === '' || employee.department.toLowerCase() === this.selectedDepartment.toLowerCase())
       );
     }
-    
-
     
     onSearchChange() {
       this.filterEmployees();
@@ -120,6 +120,4 @@ export class ManageComponent implements OnInit {
       this.selectedDepartment = '';
       this.filterEmployees();
     }
-
-
 }
